@@ -6,6 +6,7 @@ import json
 import requests
 import os
 
+
 def pull_api_key(config_file):
     """A function to export an api key to ENV"""
     with open(config_file) as json_data_file:
@@ -22,10 +23,10 @@ def pull_api_key(config_file):
 class Lifx:
     """Handle all of the lifx interactions"""
     base_url = "https://api.lifx.com/v1/"
-    if os.environ['API_KEY'] is None:
-        api_key = "Bearer {}".format(pull_api_key("config.json"))
+    if os.environ['LIFX_API_KEY'] is not None:
+        api_key = "Bearer {}".format(os.environ['LIFX_API_KEY'])
     else:
-        api_key = os.environ['API_KEY']
+        api_key = "Bearer {}".format(pull_api_key("config.json"))
 
     def get_lifx_state(self):
         """Return the current state of the lifx bulb"""
@@ -85,6 +86,8 @@ class Lifx:
         }
         response = requests.put(endpoint, headers=headers, data=payload)
         response = response.json()
+        print self.api_key
+        print response
         return response
 
     def set_lifx_brightness(self, brightness_level):
