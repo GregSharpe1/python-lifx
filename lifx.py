@@ -5,9 +5,9 @@ import getopt
 import json
 import requests
 
+
 def pull_api_key(config_file):
     """A function to export an api key to ENV"""
-    ## File must be in the same directory as this file (lifx.py)
     with open(config_file) as json_data_file:
         data = json.load(json_data_file)
         attribute_val = data.get("api_key")
@@ -52,7 +52,6 @@ class Lifx:
         response = requests.put(endpoint, headers=headers, data=payload)
         response = response.json()
         return response
-
 
         # TODO: FIX THIS BAD BOY
     def validate_attempted_colour(self, colour):
@@ -170,6 +169,7 @@ def usage():
 
     sys.exit(1)
 
+
 # Main part of the script
 def main(argv):
     try:
@@ -201,6 +201,7 @@ def main(argv):
             lifx.set_lifx_brightness(arg)
         else:
             assert False, "ERROR: Unhandled option"
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
