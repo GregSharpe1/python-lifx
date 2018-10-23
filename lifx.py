@@ -4,7 +4,7 @@ import sys
 import getopt
 import json
 import requests
-
+import os
 
 def pull_api_key(config_file):
     """A function to export an api key to ENV"""
@@ -22,7 +22,10 @@ def pull_api_key(config_file):
 class Lifx:
     """Handle all of the lifx interactions"""
     base_url = "https://api.lifx.com/v1/"
-    api_key = "Bearer {}".format(pull_api_key("config.json"))
+    if os.environ['API_KEY'] is None:
+        api_key = "Bearer {}".format(pull_api_key("config.json"))
+    else:
+        api_key = os.environ['API_KEY']
 
     def get_lifx_state(self):
         """Return the current state of the lifx bulb"""
