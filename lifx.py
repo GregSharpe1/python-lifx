@@ -175,11 +175,11 @@ def usage():
 def main(argv):
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hc:s:tb:",
-                                   [ "help",
+                                   ["help",
                                      "colour=",
                                      "state=",
                                      "toggle",
-                                     "bright=" ])
+                                     "bright="])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
