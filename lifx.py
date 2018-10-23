@@ -22,7 +22,7 @@ def pull_api_key(config_file):
 class Lifx:
     """Handle all of the lifx interactions"""
     base_url = "https://api.lifx.com/v1/"
-    api_key = pull_api_key("config.json")
+    api_key = "Bearer {}".format(pull_api_key("config.json"))
 
     def get_lifx_state(self):
         """Return the current state of the lifx bulb"""
