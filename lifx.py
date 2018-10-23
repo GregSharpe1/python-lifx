@@ -134,7 +134,8 @@ class Lifx:
             if scenes['name'] == scene_name:
                 return scenes['uuid']
             else:
-                raise ValueError("Cannot find {} within your lifx account! Please refer to your mobile application".format(scene_name))
+                raise ValueError("Cannot find {} within your lifx account! Please refer to your mobile application"
+                                 .format(scene_name))
 
     def set_lifx_scene(self, scene_name):
         """Set a lifx specific scene"""
@@ -176,10 +177,10 @@ def main(argv):
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hc:s:tb:",
                                    ["help",
-                                     "colour=",
-                                     "state=",
-                                     "toggle",
-                                     "bright="])
+                                    "colour=",
+                                    "state=",
+                                    "toggle",
+                                    "bright="])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
