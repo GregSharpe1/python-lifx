@@ -61,7 +61,8 @@ class Lifx:
         headers = {
             'Authorization': self.api_key,
         }
-        response = requests.request("GET", endpoint, headers=headers, data={'string': colour})
+        response = requests.request("GET", endpoint, headers=headers,
+                                    data={'string': colour})
         return response
 
     def set_lifx_colour(self, colour):
@@ -86,7 +87,7 @@ class Lifx:
     def set_lifx_brightness(self, brightness_level):
         """Set the brightness of the lifx bulb"""
 
-        # Value's are only allowed between 0.0 and 1.0. I'm going to multiple the number by 100.
+        # Value's are only allowed between 0.0 and 1.0.
         brightness_level = float(brightness_level) / 100
 
         # Use the above function to make sure the bulb is on!
